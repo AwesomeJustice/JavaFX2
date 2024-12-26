@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class main extends Application {
+public class GM extends Application {
     private List<Shape2D> shapes = new ArrayList<>();
     private Shape2D selectedShape = null;
     private double offsetX, offsetY;
@@ -31,8 +31,8 @@ public class main extends Application {
         Button addRectangleButton = new Button("Add Rectangle");
         Button addCircleButton = new Button("Add Circle");
 
-        addRectangleButton.setOnAction(e -> addShape("Rectangle"));
-        addCircleButton.setOnAction(e -> addShape("Circle"));
+        addRectangleButton.setOnAction(e -> addShape("Rectangle", gc));
+        addCircleButton.setOnAction(e -> addShape("Circle", gc));
 
         VBox buttonBox = new VBox(10, addRectangleButton, addCircleButton);
 
@@ -78,7 +78,7 @@ public class main extends Application {
         primaryStage.show();
     }
 
-    private void addShape(String type) {
+    private void addShape(String type, GraphicsContext gc) {
         Random rand = new Random();
         Color randomColor = randomColor();
 
@@ -95,7 +95,7 @@ public class main extends Application {
             shapes.add(new Circle2D(x, y, radius, randomColor));
         }
 
-        redraw(getGraphicsContext2D());
+        redraw(gc);
     }
 
     private void redraw(GraphicsContext gc) {
